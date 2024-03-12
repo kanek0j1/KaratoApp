@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+      TZ: "Asia/Tokyo"
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my_custom.cnf
+
+volumes:
+  db: {}
