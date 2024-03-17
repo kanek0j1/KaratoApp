@@ -1,57 +1,46 @@
 body {
-    font-size: 3vw;
-    }
-  
-  
-    .bar {
-    font-size: 2vw;
-    margin-left: 1.5vw;
-    margin-right: 1vw;
-    padding-top: 5vh;
-    font-family: "inter";
-    font-weight: 200;
-  
-    }
-  
-    .rogo {
-      width: 15vw;
-    }
-    
-  
-    hr{
-    margin-top: 30vh;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    background-color: black;
-    
-      }  
-  
-    body {
-      display: flex;
-      margin: 0; 
-    }
-  
-    nav {
-      height: 100vh;
-      background-color: #D2F3BF;
-    }
+  font-size: 3vw;
+  display: flex;
+  margin: 0;
+}
 
-    main{
-        width: 100%;
-    }
-  
-    .hoge {
-      display: flex;
-      justify-content: space-between;
-      margin:2vw 3vw 0  3vw;
+.bar {
+  font-size: 2vw;
+  margin-left: 1.5vw;
+  margin-right: 1vw;
+  padding-top: 5vh;
+  font-family: "inter";
+  font-weight: 200;
+}
 
-    }
+.rogo {
+  width: 15vw;
+}
 
+hr {
+  margin-top: 30vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  background-color: black;
+}
 
+nav {
+  height: 100vh;
+  background-color: #D2F3BF;
+}
 
+main {
+  width: 100%;
+}
 
-    .wod {
-      width: 808px;
-      height: 674px;
-      margin-left: 5vw;
-    }
+.hoge {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vw 3vw 0 3vw;
+}
+
+.wod {
+  width: 808px;
+  height: 674px;
+  margin-left: 5vw;
+}
