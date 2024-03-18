@@ -28,14 +28,17 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 let email = "example@gmail.com";
 let password ="12345";
+let name = "michael"
 window.signup = ()=>{
     email = document.getElementById("emailInput");
     password = document.getElementById("passwordInput");
+    name = document.getElementById("nameInput");
     console.log("testfunc");
     createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        saveUser(name);
         window.location.href = '../index.html';
         // ...
     })
@@ -69,7 +72,7 @@ window.login = ()=>{
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 window.saveUser = (name)=>{
-    db.collection("users").add({
+    addDoc(collection(db, "users"), {
         name: name,
     })
     .then((docRef) => {
