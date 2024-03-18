@@ -1,4 +1,9 @@
 {
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "firebase": "^10.9.0"
   }
