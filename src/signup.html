@@ -6,6 +6,7 @@
   <title>Firebase Authentication Example</title>
   <!-- Firebase JavaScript SDKの読み込み -->
   <script type="module" src="js/firebase.js"></script>
+
 </head>
 <body>
   <h1>Firebase Authentication Example</h1>
@@ -15,25 +16,6 @@
     <input type="password" id="passwordInput" placeholder="Password">
     <input type="button" onclick="signup()">Sign Up</button>
   </form>
-  <script>
-    function signup(){
-    email = document.getElementById("emailInput");
-    password = document.getElementById("passwordInput");
-    console.log("testfunc");
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(error.message);
-        // ..
-    });
-
-}
-  </script>
+  <!-- <script type="module" src="js/firebase.js"></script> -->
 </body>
 </html>
