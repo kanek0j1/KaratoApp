@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>wood diarly</title>
-    <link rel="stylesheet" type="text/css" href="record.css" /> 
+    <link rel="stylesheet" type="text/css" href="record.css" />
+    <script src="js/get.js"></script>
   </head>
 
   <header>
-   <h1>今日の日記</h1>
+  <h1>今日の日記</h1>
     <div class="breadcrumb">
       <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
         <a itemprop="item" href="file:///Users/kogayuuakira-1114/Documents/%E7%99%BA%E6%8E%98%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3/index.html">
@@ -33,9 +34,10 @@
     <form>
       <textarea name="text" class="feedback-input" placeholder="今日は"></textarea>
     </form>
-    <button>
+
+<div class="container">
       <div class="top">
-          <p class="word flex-grow">喜</p>
+          <p class="word">喜</p>
           <label><input type="radio" name="happy" value="1" style="transform:scale(2.0);" checked/></label>
           <label><input type="radio" name="happy" value="2" style="transform:scale(2.3);" /></label>
           <label><input type="radio" name="happy" value="3" style="transform:scale(2.6);" /></label>
@@ -43,10 +45,10 @@
           <label><input type="radio" name="happy" value="5" style="transform:scale(3.2);" /></label>
           <label><input type="radio" name="happy" value="6" style="transform:scale(3.5);" /></label>
       </div>
-    </button></br>
-    <button>
+
+
       <div class="middle1">
-        <p class="word flex-grow">怒</p>
+        <p class="word">怒</p>
         <label><input type="radio" name="angry" value="1" style="transform:scale(2.0);" checked/></label>
         <label><input type="radio" name="angry" value="2" style="transform:scale(2.3);"/></label>
         <label><input type="radio" name="angry" value="3" style="transform:scale(2.6);"/></label>
@@ -54,10 +56,10 @@
         <label><input type="radio" name="angry" value="5" style="transform:scale(3.2);"/></label>
         <label><input type="radio" name="angry" value="6" style="transform:scale(3.5);"/></label>
       </div>
-    </button></br>
-    <button>
+
+
       <div class="middle2">
-        <p class="word flex-grow">哀</p>
+        <p class="word">哀</p>
         <label><input type="radio" name="sad" value="1" style="transform:scale(2.0);" checked/></label>
         <label><input type="radio" name="sad" value="2" style="transform:scale(2.3);"/></label>
         <label><input type="radio" name="sad" value="3" style="transform:scale(2.6);"/></label>
@@ -65,10 +67,10 @@
         <label><input type="radio" name="sad" value="5" style="transform:scale(3.2);"/></label>
         <label><input type="radio" name="sad" value="6" style="transform:scale(3.5);"/></label>
       </div>
-    </button></br>
-    <button>
+
+
       <div class="under">
-        <p class="word flex-grow">楽</p>
+        <p class="word">楽</p>
         <label><input type="radio" name="fun" value="1" style="transform:scale(2.0);" checked/></label>
         <label><input type="radio" name="fun" value="2" style="transform:scale(2.3);"/></label>
         <label><input type="radio" name="fun" value="3" style="transform:scale(2.6);"/></label>
@@ -76,14 +78,12 @@
         <label><input type="radio" name="fun" value="5" style="transform:scale(3.2);"/></label>
         <label><input type="radio" name="fun" value="6" style="transform:scale(3.5);"/></label>
       </div>
-    </button><br>
+</div>
 
-    
-    
-      
+<button type="submit" id="btn-submit">投稿する</button>
+
   </body>
 
   <footer>
-    <input type="submit" value="投稿する" class="btn-submit">
   </footer>
 </html>

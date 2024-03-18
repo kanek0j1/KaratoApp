@@ -17,7 +17,7 @@ function draw() {
             let angle = PI / 4; // 回転角度（ラジアン）
 
             push();
-            translate(windowWidth /2.5, windowHeight * 0.9); // 描画の開始位置
+            translate(windowWidth /2.3, windowHeight * 0.9); // 描画の開始位置
 
             for (const c of command) {
                 switch (c) {
