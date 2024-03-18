@@ -49,3 +49,12 @@ button:hover {
     text-align: center;
     margin-top: 5vw;
 }
+
+.entry {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.entry:hover{
+    background-color: #45a049;
+}
