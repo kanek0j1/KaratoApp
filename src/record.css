@@ -119,6 +119,7 @@ button {
 
 input {
  margin: 1.5vh 2vw 0vh 2vw;
+ accent-color: #009a00;
 }
 
 /* ボタン基本スタイル */
