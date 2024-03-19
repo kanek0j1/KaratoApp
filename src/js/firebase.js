@@ -11,13 +11,13 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
 import { getFirestore, doc, setDoc, getDoc,  updateDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
 const firebaseConfig = {
-  apiKey: "AIzaSyA7owjrk31aiD5CY_JK_AWUSMcJU3NDJWs",
-  authDomain: "karatoapp.firebaseapp.com",
-  projectId: "karatoapp",
-  storageBucket: "karatoapp.appspot.com",
-  messagingSenderId: "447206705595",
-  appId: "1:447206705595:web:5bd3cc4aaf74c1260d9c9e",
-  measurementId: "G-FD8ER0LNDR"
+apiKey: "AIzaSyA7owjrk31aiD5CY_JK_AWUSMcJU3NDJWs",
+authDomain: "karatoapp.firebaseapp.com",
+projectId: "karatoapp",
+storageBucket: "karatoapp.appspot.com",
+messagingSenderId: "447206705595",
+appId: "1:447206705595:web:5bd3cc4aaf74c1260d9c9e",
+measurementId: "G-FD8ER0LNDR"
 };
 
 // Initialize Firebase
@@ -43,9 +43,10 @@ window.signup = ()=>{
         });
     })
     .catch((error) => {
+        console.log(error.message);
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(error.message);
+        alert("登録情報がありません。またはパスワードが間違っています。");
         // ..
     });
 };
@@ -57,7 +58,7 @@ window.login = ()=>{
     console.log(email.value);
     signInWithEmailAndPassword(auth, email.value, password.value)
     .then(async (userCredential) => {
-        // Signed in 
+        // Signed in
         const user = userCredential.user;
         window.location.href = '../index.html';
         // ...
@@ -86,8 +87,9 @@ window.saveUser = (uid,name)=>{
 
 window.mkdiary = ()=>{
     onAuthStateChanged(auth, async(user) => {
-      if (user) {
+    if (user) {
         const uid = user.uid;
+<<<<<<< HEAD
         mktree(uid).then(() => {
             window.location.href = '../index.html';
         });
@@ -96,6 +98,21 @@ window.mkdiary = ()=>{
         console.log("No user is signed in.");
       }
     })
+=======
+        const db = getFirestore();
+        const userDocRef = doc(db, "users", uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+        document.querySelector('.name').innerText = userDoc.data().name;
+        } else {
+        console.log("User document does not exist.");
+        }
+    } else {
+        console.log("No user is signed in.");
+    }
+    });
+>>>>>>> b460c6e520dc6926e6b7677a2665b1ae10ad99f0
 }
 
 window.mktree = async(uid)=>{
