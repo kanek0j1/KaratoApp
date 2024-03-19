@@ -123,7 +123,7 @@ changeLeafColor(happyValue, angryValue, sadValue, funValue);
 });
 
 function changeLeafColor(happyclore, angryclore, sadclore, funclore) {
-    let r = 139, g = 209, b = 89;
+    let r = 0, g = 0, b = 0;
 
     // 数値に変換
     let happyValue = parseInt(happyclore);
@@ -131,16 +131,21 @@ function changeLeafColor(happyclore, angryclore, sadclore, funclore) {
     let sadValue = parseInt(sadclore);
     let funValue = parseInt(funclore);
 
-    // 値に基づいて色を変更
-    if (happyValue) r += 30 * happyValue; g += 30 * happyValue; b -= 5 * happyValue;
-    if (angryValue) r += 30 * angryValue; g -= 5 * angryValue; b -= 5 * angryValue;
-    if (sadValue) r -= 5 * sadValue; g -= 5 * sadValue; b += 30 * sadValue;
-    if (funValue) r += 15 * funValue; g += 30 * funValue; b += 15 * funValue;
-
+// 値に基づいて色を変更
+if (happyValue) { // 喜び（黄色を強調）
+    r += 40 * happyValue; g += 40 * happyValue; b += 2 * happyValue;
+}
+if (angryValue) { // 怒り（赤を強調）
+    r += 50 * angryValue; g -= 30 * angryValue; b -= 30 * angryValue;
+}
+if (sadValue) { // 哀しみ（青を強調）
+    r -= 10 * sadValue; g -= 10 * sadValue; b += 110 * sadValue;
+}
+if (funValue) { // 楽しい（緑を強調し全体的に明るく）
+    r -= 10 * funValue; g += 40 * funValue; b -= 10 * funValue;
+}
     leafColor = [r, g, b];
 }
-
-
 
 function drawLeaf() {
     push();
