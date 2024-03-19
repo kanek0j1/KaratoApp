@@ -44,6 +44,7 @@ function draw() {
         let currentCmd = commands.charAt(i);
         switch (currentCmd) {
             case "F":
+                stroke("#C27526")
                 strokeWeight(map(depth, 0, growth, 5, 0));
                 line(0, 0, 0, -distance);
                 translate(0, -distance);
@@ -77,7 +78,7 @@ function draw() {
 
 
 document.addEventListener('DOMContentLoaded', () =>{
- const url = new URL(window.location.href);
+const url = new URL(window.location.href);
  // クエリパラメータを取得
     const happyValue = url.searchParams.get('happy');
     const angryValue = url.searchParams.get('angry');
@@ -117,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 //     window.location.href = 'index.html?' + params.toString();
 
 //     // 葉の色を変更する（この関数の実装は省略）
-   changeLeafColor(happyValue, angryValue, sadValue, funValue);
+changeLeafColor(happyValue, angryValue, sadValue, funValue);
 // });
 });
 
