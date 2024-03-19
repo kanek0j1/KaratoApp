@@ -20,6 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
+
 document.addEventListener('DOMContentLoaded', () => {
     const auth = getAuth();
     onAuthStateChanged(auth, async(user) => {
@@ -30,10 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const treeDocRef = doc(db, "tree", uid);
         const userDoc = await getDoc(userDocRef);
         const treeDoc = await getDoc(treeDocRef);
-        
+
+
         if (userDoc.exists()) {
           document.querySelector('.name').innerText = userDoc.data().name;
           document.querySelector('.days').innerText = treeDoc.data().level + "days";
+
+          localStorage.setItem('level', treeDoc.data().level);
+          localStorage.setItem('name', userDoc.data().name);
+
         } else {
           console.log("User document does not exist.");
         }
@@ -42,4 +48,3 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  
