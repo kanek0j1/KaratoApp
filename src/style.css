@@ -7,6 +7,19 @@ body {
   display: flex;
 }
 
+.rogo {
+  width: 15vw;
+}
+
+
+.hr-style {
+  border: 0;
+  height: 0.01%;
+  background-color: hsl(0, 0%, 17%);
+  border-top: 1px solid #000(0, 0, 0, 0.1);
+  border-bottom: 1px solid #000(0, 0, 0, 0.3);
+}
+
 .bar {
   font-size: 2vw;
   margin-left: 1.8vw;
@@ -23,9 +36,6 @@ a {
   text-decoration:none;
 }
 
-.rogo {
-  width: 15vw;
-}
 
 hr {
   margin-top: 30vh;

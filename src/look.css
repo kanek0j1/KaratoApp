@@ -8,19 +8,22 @@ body {
 }
 
 header {
-    text-align: center;
     margin-bottom: 20px;
 }
 
 header h1 {
-    font-size: 24px;
+    font-size: 200%;
+    text-align: center;
+    margin-top: 3vh; 
+    margin-bottom: 4vh;   
 }
+
 
 .breadcrumb {
     padding: 0;
     list-style: none;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 16%;
+    margin-right: 16%;
 }
   
 .breadcrumb li {
@@ -77,6 +80,7 @@ header h1 {
 
 .pagination {
     text-align: center;
+    margin-bottom: 5vh;
 }
 
 .pagination a {
