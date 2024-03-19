@@ -9,7 +9,7 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase
 
 // Add Firebase products that you want to use
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
-import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
+import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
 const firebaseConfig = {
   apiKey: "AIzaSyA7owjrk31aiD5CY_JK_AWUSMcJU3NDJWs",
   authDomain: "karatoapp.firebaseapp.com",
@@ -38,9 +38,9 @@ window.signup = ()=>{
     .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        saveUser(name);
+        saveUser(user.uid, name.value).then(() => {
         window.location.href = '../index.html';
-        // ...
+        });
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -55,7 +55,7 @@ window.login = ()=>{
     password = document.getElementById("passwordInput");
     console.log(email.value);
     signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
         // Signed in 
         const user = userCredential.user;
         window.location.href = '../index.html';
@@ -71,12 +71,13 @@ window.login = ()=>{
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
-window.saveUser = (name)=>{
-    addDoc(collection(db, "users"), {
+window.saveUser = (uid,name)=>{
+    console.log("saveuserd");
+    return setDoc(doc(db, "users", uid), {
         name: name,
     })
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+    .then(() => {
+        console.log("Document successfully written!");
     })
     .catch((error) => {
         console.error("Error adding document: ", error);
