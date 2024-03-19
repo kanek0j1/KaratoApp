@@ -13,7 +13,7 @@ body{
 .cp_iptxt input[type='text'] {
 	font: 15px/24px sans-serif;
 	box-sizing: border-box;
-	width: 78%;
+	width: 46%;
 	padding: 0.3em;
 	transition: 0.3s;
 	letter-spacing: 1px;
@@ -21,24 +21,22 @@ body{
 	border: none;
 	border-bottom: 2px solid #1b2538;
 	background: transparent;
+  margin-left:  34%;
+  margin-right: 34%;
 }
 .ef input[type='text']:focus {
 	border-bottom: 2px solid #000000;
 	outline: none;
 }
 
-.cp_iptxt input {
-  margin-left: 21%;
-  margin-right: 20%;
-}
+
 
 textarea {
-  margin-top: 2vh;
-  width: 60vw;
-  height: 50vh;
+  width: 38vw;
+  height: 25vh;
   padding: 3px 7px;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 29%;
+  margin-right: 29%;
   border-radius: 13px;
 }
 
@@ -48,12 +46,10 @@ textarea {
 }
 
 .breadcrumb {
-  margin: 0;
   padding: 0;
   list-style: none;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-top: 2%;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .breadcrumb li {
@@ -89,25 +85,25 @@ button {
 }
 
 .top {
- margin-top: 10%;
+ margin-top: 3%;
  display: flex; 
  justify-content: center;
 }
 
 .middle1 {
-  margin-top: 6%;
+  margin-top: 1%;
   display: flex; 
   justify-content: center;
 }
 
 .middle2 {
-  margin-top: 6%;
+  margin-top: 1%;
   display: flex;
   justify-content: center;
 }
 
 .under {
-  margin-top: 6%;
+  margin-top: 1%;
   display: flex; 
   justify-content: center;
 }
@@ -122,7 +118,7 @@ button {
 }
 
 input {
- margin: 1.5vh 2.8vw 0vh 2.8vw;
+ margin: 1.5vh 2vw 0vh 2vw;
 }
 
 /* ボタン基本スタイル */
