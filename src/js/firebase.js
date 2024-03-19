@@ -41,7 +41,7 @@ window.signup = ()=>{
         // Signed in
         const user = userCredential.user;
         saveUser(user.uid, name.value).then(() => {
-        window.location.href = '../index.html';
+        window.location.href = '../home.html';
         });
     })
     .catch((error) => {
@@ -62,7 +62,7 @@ window.login = ()=>{
     .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        window.location.href = '../index.html';
+        window.location.href = '../home.html';
         // ...
     })
     .catch((error) => {
@@ -93,7 +93,7 @@ window.mkdiary = ()=>{
         const uid = user.uid;
         console.log("mkdiary");
         mktree(uid).then(() => {
-            //window.location.href = '../index.html';
+            //window.location.href = '../home.html';
         });
         
       } else {

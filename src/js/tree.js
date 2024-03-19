@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const funclore = parseInt(funValue);
 
 // クエリパラメータを含むURLに遷移
-//window.location.href = '../index.html?' +  parseInt.toInt();
+//window.location.href = '../home.html?' +  parseInt.toInt();
 
  // 葉の色を変更する（この関数の実装は省略）
 changeLeafColor(happyclore, angryclore, sadclore, funclore);
