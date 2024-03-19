@@ -7,6 +7,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebas
 // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js'
 
+import { getStorage } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js';
+
 // Add Firebase products that you want to use
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
 import { getFirestore, doc, setDoc, getDoc,  updateDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
@@ -89,8 +91,9 @@ window.mkdiary = ()=>{
     onAuthStateChanged(auth, async(user) => {
     if (user) {
         const uid = user.uid;
+        console.log("mkdiary");
         mktree(uid).then(() => {
-            window.location.href = '../index.html';
+            //window.location.href = '../index.html';
         });
         
       } else {
@@ -141,3 +144,6 @@ window.saveTree = (uid,level)=>{
         console.error("Error adding document: ", error);
     });
 }
+
+const storage = getStorage(app);
+
