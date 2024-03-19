@@ -117,7 +117,7 @@ function changeLeafColor(happyclore, angryclore, sadclore, funclore) {
     let funValue = parseInt(funclore);
 
 // 値に基づいて色を変更
-if(happyValue + angryValue + sadValue + funValue == 4){
+if(happyValue + angryValue + sadValue + funValue <= 4){
  r = 139, g = 209, b = 89;
 }else {
     if (happyValue) { // 喜び（黄色を強調）
