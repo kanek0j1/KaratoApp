@@ -121,17 +121,16 @@ document.addEventListener('DOMContentLoaded', () =>{
 // });
 });
 
-
 function changeLeafColor(happyclore, angryclore, sadclore, funclore) {
     let r = 139, g = 209, b = 89;
-    if (happyclore) r += 30; g += 30; b -= 5;
-    if (angryclore) r += 30; g -= 5; b -= 5;
-    if (sadclore) r -= 5; g -= 5; b += 30;
-    if (funclore) r += 15; g += 30; b += 15;
-    leafColor = [r, g, b];function changeLeafColor(happyclore, angryclore, sadclore, funclore) {
-    let r = 139, g = 209, b = 89;
 
+    // 数値に変換
+    let happyValue = parseInt(happyclore);
+    let angryValue = parseInt(angryclore);
+    let sadValue = parseInt(sadclore);
+    let funValue = parseInt(funclore);
 
+    // 値に基づいて色を変更
     if (happyValue) r += 30 * happyValue; g += 30 * happyValue; b -= 5 * happyValue;
     if (angryValue) r += 30 * angryValue; g -= 5 * angryValue; b -= 5 * angryValue;
     if (sadValue) r -= 5 * sadValue; g -= 5 * sadValue; b += 30 * sadValue;
@@ -139,7 +138,8 @@ function changeLeafColor(happyclore, angryclore, sadclore, funclore) {
 
     leafColor = [r, g, b];
 }
-}
+
+
 
 function drawLeaf() {
     push();
