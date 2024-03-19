@@ -11,7 +11,7 @@ import { getStorage } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-s
 
 // Add Firebase products that you want to use
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
-import { getFirestore, doc, setDoc, getDoc,  updateDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
+import { getFirestore, doc, setDoc, getDoc,  updateDoc, addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
 const firebaseConfig = {
 apiKey: "AIzaSyA7owjrk31aiD5CY_JK_AWUSMcJU3NDJWs",
 authDomain: "karatoapp.firebaseapp.com",
@@ -93,7 +93,7 @@ window.mkdiary = ()=>{
         const uid = user.uid;
         console.log("mkdiary");
         mktree(uid).then(() => {
-            //window.location.href = '../home.html';
+            window.location.href = '../home.html';
         });
         
       } else {
@@ -105,7 +105,7 @@ window.mkdiary = ()=>{
 window.mktree = async(uid)=>{
     const docRef = doc(db, "tree", uid);
     const docSnap = await getDoc(docRef);
-
+    diary(uid);
     if (docSnap.exists()) {
         let currentLevel = docSnap.data().level;
         if (currentLevel > 0 && currentLevel < 8) {
@@ -129,20 +129,15 @@ window.mktree = async(uid)=>{
 
 
 
-window.saveTree = (uid,level)=>{
-    console.log("savetree");
-    if(level){
-
-    }
-    return setDoc(doc(db, "tree", uid), {
-        level: level,
-    })
-    .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
+window.diary = async(uid)=>{
+    let title = document.querySelector('.title');
+    let text = document.querySelector('.feedback-input');
+    console.log(title.value);
+    const docRef = await addDoc(collection(db, "users", uid, "diary"), {
+        title: title.value,
+        text: text.value,
     });
+    console.log("Document written with ID: ", docRef.id);
 }
 
 const storage = getStorage(app);
