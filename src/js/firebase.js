@@ -24,7 +24,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-// Initialize Firebase Authentication and get a reference to the service
+// 登録+ホーム遷移
 const auth = getAuth();
 let email = "example@gmail.com";
 let password ="12345";
@@ -50,6 +50,7 @@ window.signup = ()=>{
     });
 };
 
+//ログイン+ホーム遷移
 window.login = ()=>{
     email = document.getElementById("emailInput");
     password = document.getElementById("passwordInput");
@@ -68,13 +69,44 @@ window.login = ()=>{
     });
 }
 
-
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 window.saveUser = (uid,name)=>{
     console.log("saveuserd");
     return setDoc(doc(db, "users", uid), {
         name: name,
+    })
+    .then(() => {
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
+window.mktree = ()=>{
+    onAuthStateChanged(auth, async(user) => {
+      if (user) {
+        const uid = user.uid;
+        const db = getFirestore();
+        const userDocRef = doc(db, "users", uid);
+        const userDoc = await getDoc(userDocRef);
+        
+        if (userDoc.exists()) {
+          document.querySelector('.name').innerText = userDoc.data().name;
+        } else {
+          console.log("User document does not exist.");
+        }
+      } else {
+        console.log("No user is signed in.");
+      }
+    });
+}
+
+window.saveTree = (uid,level)=>{
+    console.log("savetree");
+    return setDoc(doc(db, "tree", uid), {
+        level: level,
     })
     .then(() => {
         console.log("Document successfully written!");
