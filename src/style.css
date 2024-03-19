@@ -9,11 +9,13 @@ body {
 
 .bar {
   font-size: 2vw;
-  margin-left: 1.5vw;
+  margin-left: 1.8vw;
   margin-right: 1vw;
-  padding-top: 5vh;
+  padding-top: 4vh;
   font-family: "inter";
-  font-weight: 200;
+  font-weight: bold;
+  font-family: "游ゴシック体","YuGothic";
+  
 }
 
 a {
