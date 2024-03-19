@@ -11,7 +11,7 @@ import { getStorage } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-s
 
 // Add Firebase products that you want to use
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
-import { getFirestore, doc, setDoc, getDoc,  updateDoc, addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
+import { getFirestore, doc, setDoc, getDoc,  updateDoc, addDoc, collection, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
 const firebaseConfig = {
 apiKey: "AIzaSyA7owjrk31aiD5CY_JK_AWUSMcJU3NDJWs",
 authDomain: "karatoapp.firebaseapp.com",
@@ -93,12 +93,44 @@ window.mkdiary = ()=>{
         const uid = user.uid;
         console.log("mkdiary");
         mktree(uid).then(() => {
-            window.location.href = '../home.html';
+            let happyValue = document.getElementsByName('happy');
+            let angryValue = document.getElementsByName('angry');
+            let sadValue = document.getElementsByName('sad');
+            let funValue = document.getElementsByName('fun');
+
+            happyValue = Array.from(happyValue).find(
+                (e)=>{
+                    return e.checked;
+                }
+            ).value;
+            angryValue = Array.from(angryValue).find(
+                (e)=>{
+                    return e.checked;
+                }
+            ).value;
+            sadValue = Array.from(sadValue).find(
+                (e)=>{
+                    return e.checked;
+                }
+            ).value;
+            funValue = Array.from(funValue).find(
+                (e)=>{
+                    return e.checked;
+                }
+            ).value;
+            console.log(happyValue);
+            console.log(angryValue);
+            console.log(sadValue);
+            console.log(funValue);
+            const params = new URLSearchParams({ happy: happyValue, angry: angryValue, sad: sadValue, fun: funValue});
+            const url = '../home.html';
+            const fullUrl = (url + '?' + params);
+            window.location.href = fullUrl;
+            console.log(fullUrl);
         });
-        
-      } else {
+    } else {
         console.log("No user is signed in.");
-      }
+    }
     })
 }
 
@@ -136,9 +168,9 @@ window.diary = async(uid)=>{
     const docRef = await addDoc(collection(db, "users", uid, "diary"), {
         title: title.value,
         text: text.value,
+        createdAt: serverTimestamp(), // サーバーのタイムスタンプを追加
     });
     console.log("Document written with ID: ", docRef.id);
 }
 
 const storage = getStorage(app);
-

@@ -2,6 +2,12 @@ let growth = 0.0;
 let leaf = 0;
 let leafColor = [139, 209, 89];
 
+//葉の初期設定
+const w = 400;
+const h = 400;
+const n = 4;
+const size = 100;
+
 function setup() {
     let cnv = createCanvas(windowWidth * 0.85, windowHeight * 0.85);
     cnv.parent('canvas-container');
@@ -48,9 +54,7 @@ function draw() {
                 pop();
                 depth--;
                 leaf++;
-                if(leaf > 6) {
                 drawLeaf();
-                }
                 break;
         }
     }
@@ -69,9 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sadValue = urlParams.get('sad');
     const funValue = urlParams.get('fun');
     console.log("happy = " + happyValue);
-    console.log("happy = " + angryValue);
-    console.log("happy = " + sadValue);
-    console.log("happy = " + funValue);
+    console.log("angry = " + angryValue);
+    console.log("sad = " + sadValue);
+    console.log("fun = " + funValue);
 
         // 値の変換と葉の色の変更
         const happyclore = parseInt(happyValue);
@@ -116,14 +120,55 @@ if(happyValue + angryValue + sadValue + funValue <= 4){
     leafColor = [r, g, b];
 
 }
-
 function drawLeaf() {
-    push();
-    fill(...leafColor);
-    noStroke();
-    ellipse(0, 0, 13, 6);
-    pop();
+ellipse(0, 0, 8, 3);
 }
+
+// function drawLeaf() {
+//     const ox = 0;
+//     const oy = 0;
+//     let xmax;
+//     let ymax;
+//     const veins = 0.75; //葉脈の長さ
+//     const petiole = -0.25; //葉柄の長さ
+//     const n = 4;
+//     const size = 100;
+//     push();
+//     noStroke();
+//     translate(ox, oy);
+//     beginShape();
+// for (let t = 0; t < 360 / n; t++) {
+//     const bulge = 1.2; //葉の膨らみ
+//     A = (n / PI) * radians(t);
+
+//     md = floor(A) % 2;
+
+//     r = pow(-1, md) * (A - floor(A)) + md;
+
+//     R = r;
+
+//     x = size * R * cos(bulge * radians(t));
+//     y = size * R * sin(radians(t));
+
+//     if (t == 45) {
+//         xmax = x;
+//         ymax = y;
+//     }
+
+//     vertex(x, y);
+// }
+
+// endShape(CLOSE);
+
+// stroke(0); // 線の色
+// strokeWeight(0.5); // 線の太さ
+// line(0, 0, xmax * veins, ymax * veins);
+
+// stroke(255); // 線の色
+// strokeWeight(2); // 線の太さ
+// line(0, 0, xmax * petiole, ymax * petiole);
+// pop();
+// }
 
 function genCommand(repeat) {
     let command = "X";
