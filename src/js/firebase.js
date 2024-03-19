@@ -8,8 +8,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebas
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js'
 
 // Add Firebase products that you want to use
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
-import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
+import { getFirestore, doc, setDoc, getDoc,  updateDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
 const firebaseConfig = {
   apiKey: "AIzaSyA7owjrk31aiD5CY_JK_AWUSMcJU3NDJWs",
   authDomain: "karatoapp.firebaseapp.com",
@@ -84,27 +84,52 @@ window.saveUser = (uid,name)=>{
     });
 }
 
-window.mktree = ()=>{
+window.mkdiary = ()=>{
     onAuthStateChanged(auth, async(user) => {
       if (user) {
         const uid = user.uid;
-        const db = getFirestore();
-        const userDocRef = doc(db, "users", uid);
-        const userDoc = await getDoc(userDocRef);
+        mktree(uid).then(() => {
+            window.location.href = '../index.html';
+        });
         
-        if (userDoc.exists()) {
-          document.querySelector('.name').innerText = userDoc.data().name;
-        } else {
-          console.log("User document does not exist.");
-        }
       } else {
         console.log("No user is signed in.");
       }
-    });
+    })
 }
+
+window.mktree = async(uid)=>{
+    const docRef = doc(db, "tree", uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        let currentLevel = docSnap.data().level;
+        if (currentLevel > 0 && currentLevel < 8) {
+            await updateDoc(docRef, {
+                level: currentLevel + 1
+            });
+            console.log("Level updated to", currentLevel + 1);
+        } else {
+            await setDoc(docRef, {
+                level: 1
+            });
+        }
+    } else {
+        // ドキュメントが存在しない場合、levelを1で新規作成
+        await setDoc(docRef, {
+            level: 1
+        });
+        console.log("Document created with level 1");
+    }
+}
+
+
 
 window.saveTree = (uid,level)=>{
     console.log("savetree");
+    if(level){
+
+    }
     return setDoc(doc(db, "tree", uid), {
         level: level,
     })
