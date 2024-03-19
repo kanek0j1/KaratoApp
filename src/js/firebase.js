@@ -89,7 +89,6 @@ window.mkdiary = ()=>{
     onAuthStateChanged(auth, async(user) => {
     if (user) {
         const uid = user.uid;
-<<<<<<< HEAD
         mktree(uid).then(() => {
             window.location.href = '../index.html';
         });
@@ -98,21 +97,6 @@ window.mkdiary = ()=>{
         console.log("No user is signed in.");
       }
     })
-=======
-        const db = getFirestore();
-        const userDocRef = doc(db, "users", uid);
-        const userDoc = await getDoc(userDocRef);
-
-        if (userDoc.exists()) {
-        document.querySelector('.name').innerText = userDoc.data().name;
-        } else {
-        console.log("User document does not exist.");
-        }
-    } else {
-        console.log("No user is signed in.");
-    }
-    });
->>>>>>> b460c6e520dc6926e6b7677a2665b1ae10ad99f0
 }
 
 window.mktree = async(uid)=>{

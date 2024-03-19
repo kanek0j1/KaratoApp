@@ -26,14 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (user) {
         const uid = user.uid;
         const db = getFirestore();
-        const username = doc(db, "users", uid);
-        const treelevel = doc(db, "tree", uid);
-        const userName = await getDoc(username);
-        const treeLevel = await getDoc(treelevel);
+        const userDocRef = doc(db, "users", uid);
+        const userDoc = await getDoc(userDocRef);
         
         if (userDoc.exists()) {
-          document.querySelector('.name').innerText = userName.data().name;
-          document.querySelector('.name').innerText = treeLevel.data().name;
+          document.querySelector('.name').innerText = userDoc.data().name;
         } else {
           console.log("User document does not exist.");
         }
