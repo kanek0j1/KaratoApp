@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.wood-diary {
+    max-width: 600px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+.breadcrumb {
+    padding: 0;
+    list-style: none;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+  
+.breadcrumb li {
+    display: inline;/*横に並ぶように*/
+    list-style: none;
+    font-weight: bold;/*太字*/
+}
+  
+.breadcrumb li:after {/* >を表示*/
+    content: '>';
+    padding: 0 0.2em;
+    color: #555;
+}
+  
+.breadcrumb li:last-child:after {
+    content: '';
+}
+  
+.breadcrumb li a {
+    text-decoration: none;
+    color: #000000;/*色*/
+}
+  
+.breadcrumb li a:hover {
+    text-decoration: underline;
+}
+
+.diary-entries {
+    margin-bottom: 20px;
+    width: 78%;
+}
+
+.diary-entry {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #d9d9d9;
+    border-radius: 3px;
+    width: 82%;
+    margin: 0 20% 3% 20%; 
+}
+
+.date {
+    font-weight: bold;
+}
+
+.entry-image {
+    display: flex;
+}
+
+.entry-image img {
+    width: 50%; /* Adjust if necessary */
+    height: auto;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: black;
+    margin: 0 5px;
+}
+
+.pagination span {
+    font-weight: bold;
+}
+
+
