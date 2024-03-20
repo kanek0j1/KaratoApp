@@ -1,7 +1,9 @@
 let growth = 0.0;
 let leafColor = [139, 209, 89];
 
+let isDone = false
 function setup() {
+    isDone = false
 	let cnv = createCanvas(windowWidth * 0.85, windowHeight * 0.85);
 	cnv.parent("canvas-container");
 }
@@ -10,7 +12,7 @@ function windowResized() {
 	resizeCanvas(windowWidth * 0.85, windowHeight * 0.85);
 }
 
-function draw() {
+async function draw() {
 	background(255);
 	// console.log("start");
 
@@ -60,7 +62,33 @@ function draw() {
 		if (growth >= maxGrowth) {
 			growth = maxGrowth; // 成長限界を超えないようにする
 		}
+        // 木が完成しているとき一度だけ呼ぶ
+        if(growth === maxGrowth && !isDone) {
+            isDone = true
+            // canvasを画像に変換
+
+            const canvas = document.getElementById('defaultCanvas0');
+            const dataUrl = canvas.toDataURL(); // Data URLを取得
+            console.log(dataUrl);
+
+            // Data URLからBlobへの変換
+            const fetchResponse = await fetch(dataUrl); // Data URLをFetch APIで扱う
+            const blob = await fetchResponse.blob(); // レスポンスをBlobとして取得
+
+            // Firebase Storageにアップロード
+            const storage = getStorage();
+            const auth = getAuth();
+            const storageRef = ref(storage, auth.currentUser.uid + '/images/' + `${new Date().toISOString()}.png`);
+
+            // Blobを使用してアップロード
+            uploadBytes(storageRef, blob).then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+            }).catch((error) => {
+                console.error('Upload failed', error);
+            });
+        }
 	}
+
 
 	document.addEventListener("DOMContentLoaded", () => {
 		// URLSearchParamsを使用してクエリパラメータを取得

@@ -6,8 +6,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebas
 
 // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-
-import { getStorage } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
+import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
 
 // Add Firebase products that you want to use
 import {
@@ -42,6 +41,11 @@ const analytics = getAnalytics(app);
 
 // 登録+ホーム遷移
 const auth = getAuth();
+
+window.getAuth = () => {
+    return getAuth();
+}
+
 let email = "example@gmail.com";
 let password = "12345";
 let name = "michael";
@@ -101,6 +105,40 @@ window.saveUser = (uid, name) => {
 			console.error("Error adding document: ", error);
 		});
 };
+
+window.getDiaries = async (uid) => {
+    // Firebase Storageのインスタンスを取得します
+    const storage = getStorage(app);
+
+    // 現在のユーザーのUIDに基づいて参照を作成します
+    const listRef = ref(storage, uid + '/images/');
+
+    // ディレクトリ内のアイテムとプレフィックス（サブディレクトリ）のリストを取得します
+    listAll(listRef)
+    .then((res) => {
+        res.items.forEach((itemRef) => {
+            // アイテム（ファイル）の参照を使用して、ここで何か操作を行うことができます
+            // 例えば、各画像ファイルのダウンロードURLを取得することができます
+            console.log(itemRef);
+            // 画像URLを組み立てる
+            getDownloadURL(itemRef).then((url) => {
+                console.log(url);
+                // 画像を表示するためのimg要素を作成
+                const img = document.createElement('img');
+                img.src = url;
+                // 画像を表示するためのdiv要素を取得
+                const images = document.querySelector('.diary-entries');
+                // 画像を表示する
+                images.appendChild(img);
+            });
+
+        });
+    }).catch((error) => {
+        // エラーをハンドルします
+        console.log(error);
+    });
+
+}
 
 window.mkdiary = () => {
 	onAuthStateChanged(auth, async (user) => {
@@ -182,5 +220,18 @@ window.diary = async (uid) => {
 	});
 	console.log("Document written with ID: ", docRef.id);
 };
+
+window.getStorage = (app) => {
+    return getStorage(app);
+}
+
+window.uploadBytes = (storageRef, dataUrl) => {
+    return uploadBytes(storageRef, dataUrl);
+}
+
+window.ref = (storage, path) => {
+    return ref(storage, path);
+}
+
 
 const storage = getStorage(app);
