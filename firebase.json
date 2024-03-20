@@ -1,15 +1,10 @@
 {
-  "storage": {
-    "rules": "storage.rules"
-  },
+	"storage": {
+		"rules": "storage.rules"
+	},
 
-  "hosting": {
-    "public": "src",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+	"hosting": {
+		"public": "src",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+	}
 }
-
