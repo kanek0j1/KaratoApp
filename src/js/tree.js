@@ -52,23 +52,19 @@ function draw() {
                 break;
         }
     }
-    // console.log("end");
-    let level = localStorage.getItem('level');
-console.log(level);
+ // console.log("end");
+ let level = parseInt(localStorage.getItem('level')); // 文字列を数値に変換
 
-growth = frameCount * 0.05;
-if (1 == level) {
-    growth = 0.15;
-} else {
-    growth = level * 0.3;
+ if(level > 7){
+        level % 7;
+ }else{
+ growth = frameCount * 0.02; // frameCountを利用してgrowthを増加させる
+ let maxGrowth = 5.1 * (level / 7); // levelに応じて成長限界を決める
+
+ if (growth >= maxGrowth) {
+     growth = maxGrowth; // 成長限界を超えないようにする
+ }
 }
-
-// 画像をBase64形式の文字列に変換
-let base64String = png.canvas.toDataURL();
-
-// ローカルストレージに保存
-localStorage.setItem('image_' + level, base64String);
-
 
 
 
@@ -126,7 +122,6 @@ if(happyValue + angryValue + sadValue + funValue <= 4){
     }
 }
     leafColor = [r, g, b];
-
 }
 
 function drawLeaf() {
@@ -137,7 +132,6 @@ function drawLeaf() {
     pop();
 }
 
-
 //生成パターン
 function genCommand(repeat) {
     let command = "X";
@@ -146,14 +140,10 @@ function genCommand(repeat) {
         for (let j = 0; j < command.length; j++) {
             switch (command[j]) {
                 case "F":
-                    if (Math.random() < 0.5) {
-                        newCommand += "FF";
-                    } else {
-                        newCommand += "F-F";
-                    }
+                    newCommand += "FF";
                     break;
                 case "X":
-                    newCommand += "F[+X]F[-X+]+X";
+                        newCommand += "F[+X]F[-X+]X";
                     break;
                 default:
                     newCommand += command[j];
@@ -164,5 +154,4 @@ function genCommand(repeat) {
     }
     return command;
 }
-
 }
