@@ -49,25 +49,18 @@ function draw() {
 		}
 	}
 	// console.log("end");
-	let level = localStorage.getItem("level");
-	console.log(level);
+	let level = parseInt(localStorage.getItem("level")); // 文字列を数値に変換
 
-	growth = frameCount * 0.05;
-	if (1 == level) {
-		growth = 0.15;
+	if (level > 7) {
+		level % 7;
 	} else {
-		growth = level * 0.3;
+		growth = frameCount * 0.02; // frameCountを利用してgrowthを増加させる
+		let maxGrowth = 5.1 * (level / 7); // levelに応じて成長限界を決める
+
+		if (growth >= maxGrowth) {
+			growth = maxGrowth; // 成長限界を超えないようにする
+		}
 	}
-
-	// 画像をBase64形式の文字列に変換
-	// let base64String = png.canvas.toDataURL();
-
-	// ローカルストレージに保存
-	// localStorage.setItem('image_' + level, base64String);
-
-	// canvasを画像に変換
-	// let canvas = document.getElementById('defaultCanvas0');
-	// console.log(canvas);
 
 	document.addEventListener("DOMContentLoaded", () => {
 		// URLSearchParamsを使用してクエリパラメータを取得
@@ -153,14 +146,10 @@ function draw() {
 			for (let j = 0; j < command.length; j++) {
 				switch (command[j]) {
 					case "F":
-						if (Math.random() < 0.5) {
-							newCommand += "FF";
-						} else {
-							newCommand += "F-F";
-						}
+						newCommand += "FF";
 						break;
 					case "X":
-						newCommand += "F[+X]F[-X+]+X";
+						newCommand += "F[+X]F[-X+]X";
 						break;
 					default:
 						newCommand += command[j];
