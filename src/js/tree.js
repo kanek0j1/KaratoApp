@@ -57,15 +57,14 @@ async function draw() {
 	// console.log("end");
 	let level = parseInt(localStorage.getItem("level")); // 文字列を数値に変換
 
-	if (level > 7) {
-		level % 7;
-	} else {
+
 		growth = frameCount * 0.02; // frameCountを利用してgrowthを増加させる
-		let maxGrowth = 5.1 * (level / 7); // levelに応じて成長限界を決める
+		let maxGrowth = 5.1; // levelに応じて成長限界を決める
 
 		if (growth >= maxGrowth) {
 			growth = maxGrowth; // 成長限界を超えないようにする
 		}
+
         // 木が完成しているとき一度だけ呼ぶ
         if(growth === maxGrowth && !isDone) {
             isDone = true
@@ -90,9 +89,6 @@ async function draw() {
             }).catch((error) => {
                 console.error('Upload failed', error);
             });
-
-
-        }
 	}
 
 
@@ -122,9 +118,9 @@ async function draw() {
 	});
 
 	function changeLeafColor(happyclore, angryclore, sadclore, funclore) {
-		let r = 0,
-			g = 0,
-			b = 0;
+		let r = 139,
+			g = 209,
+			b = 89;
 
 		// 数値に変換
 		let happyValue = parseInt(happyclore);
@@ -133,9 +129,9 @@ async function draw() {
 		let funValue = parseInt(funclore);
 
 		// 値に基づいて色を変更
-		if (happyValue + angryValue + sadValue + funValue <= 4) {
+		if (happyValue ==null, angryValue ==null, sadValue == null, funValue == null) {
 			(r = 139), (g = 209), (b = 89);
-		} else {
+		} else { 
 			if (happyValue) {
 				// 喜び（黄色を強調）
 				r += 40 * happyValue;

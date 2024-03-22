@@ -106,6 +106,7 @@ window.saveUser = (uid, name) => {
 		});
 };
 
+//画像保存
 window.getDiaries = async (uid) => {
     // Firebase Storageのインスタンスを取得します
     const storage = getStorage(app);
@@ -190,7 +191,7 @@ window.mktree = async (uid) => {
 	diary(uid);
 	if (docSnap.exists()) {
 		let currentLevel = docSnap.data().level;
-		if (currentLevel > 0 && currentLevel < 8) {
+		if (currentLevel > 0 && currentLevel < 7) {
 			await updateDoc(docRef, {
 				level: currentLevel + 1,
 			});
