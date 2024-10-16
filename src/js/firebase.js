@@ -67,7 +67,7 @@ window.signup = () => {
 			console.log(error.message);
 			const errorCode = error.code;
 			const errorMessage = error.message;
-			alert("登録情報がありません。またはパスワードが間違っています。");
+			alert("メールアドレスが正しいか確認してください。また、パスワードは6文字以上である必要があります。");
 			// ..
 		});
 };

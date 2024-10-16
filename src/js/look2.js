@@ -35,6 +35,7 @@ window.getDiaryEntries = async(uid) => {
 }
 
 onAuthStateChanged(auth, async(user) => {
+    if (user) {
     const uid = user.uid;
     const entries = await getDiaryEntries(uid);
     const container = document.getElementById("diary-entry"); // HTML内にこのIDを持つ要素があることを想定
@@ -48,6 +49,9 @@ onAuthStateChanged(auth, async(user) => {
         `;
         container.appendChild(entryElement);
     });
+    }else {
+            console.log("ユーザーが認証されていない");
+        }
 });
 
 
